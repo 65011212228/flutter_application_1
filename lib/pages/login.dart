@@ -1,5 +1,6 @@
 import 'dart:developer';
-
+import 'package:flutter_application_1/model/trip-get-res.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/pages/register.dart';
@@ -65,16 +66,20 @@ class _LoginPageState extends State<LoginPage> {
                   TextButton(onPressed: (){
                     Navigator.push(context, MaterialPageRoute(builder:(context)=>RegisterPages()));
                   }, child: Text('สมัครสมาชิก')),
-                  FilledButton(onPressed: (){
-                    setState(() {
-                      text='login sucessfuly!!!!';
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ShowTripsPage()));
-                    });
+                  FilledButton(onPressed: ()async {
+                    String url='https://cslab.it.msu.ac.th/tripbooking/trip';
+                    var res = await http.get(Uri.parse(url));
+                    List<TripGetResponse> trips=tripGetResponseFromJson(res.body);
+                    log(trips.length.toString());
+                    // log(res.body);
+                    // setState(() {
+                    //   text='login sucessfuly!!!!';
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=> ShowTripsPage()));
+                    // });
                   }, child: Text('เข้าสู่ระบบ'))],
           
               )
               ),
-              
             ],
           ),
         ),

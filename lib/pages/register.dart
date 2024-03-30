@@ -1,8 +1,7 @@
-
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/showTrips.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPages extends StatefulWidget {
   const RegisterPages({super.key});
@@ -139,7 +138,9 @@ class _RegisterPagesState extends State<RegisterPages> {
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Register"),
-    content: Text("สมัครสมาชิกสำเร็จ"),
+    content: 
+
+    Text("สมัครสมาชิกสำเร็จ"),
     actions: [
       okButton,
     ],
