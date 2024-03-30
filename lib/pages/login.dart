@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/pages/register.dart';
@@ -38,15 +40,18 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.fromLTRB(100,20,100,20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('รหัสผ่าน'),
+                     Text('รหัสผ่าน'),
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(border: OutlineInputBorder()),
+                      onChanged: (ttt) {
+                        log('ttt');
+                      },
                     ),
                   ],
                 ),

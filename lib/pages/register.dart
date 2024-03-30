@@ -1,4 +1,8 @@
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/showTrips.dart';
 
 class RegisterPages extends StatefulWidget {
   const RegisterPages({super.key});
@@ -8,6 +12,11 @@ class RegisterPages extends StatefulWidget {
 }
 
 class _RegisterPagesState extends State<RegisterPages> {
+  TextEditingController nameCtl=TextEditingController();
+  TextEditingController phoneCtl=TextEditingController();
+  TextEditingController emailCtl=TextEditingController();
+  TextEditingController passwordCtl=TextEditingController();
+  TextEditingController againPasswordCtl=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,19 +26,20 @@ class _RegisterPagesState extends State<RegisterPages> {
           child: Column(
             children: [
                          
-                 const Padding(
+                  Padding(
                   padding: EdgeInsets.fromLTRB(60,20,60,20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('ชื่อ-นามสกุล'),
+                       const Text('ชื่อ-นามสกุล'),
                       TextField(
                         decoration: InputDecoration(border: OutlineInputBorder()),
+                        controller: nameCtl,
                       ),
                     ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(60,20,60,20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,11 +47,12 @@ class _RegisterPagesState extends State<RegisterPages> {
                       const Text('หมายเลขโทรศัพท์'),
                       TextField(
                         decoration: InputDecoration(border: OutlineInputBorder()),
+                        controller: phoneCtl,
                       ),
                     ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(60,20,60,20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,11 +60,12 @@ class _RegisterPagesState extends State<RegisterPages> {
                       const Text('อีเมล์'),
                       TextField(
                         decoration: InputDecoration(border: OutlineInputBorder()),
+                        controller: emailCtl,
                       ),
                     ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(60,20,60,20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,11 +74,12 @@ class _RegisterPagesState extends State<RegisterPages> {
                       TextField(
                         obscureText: true,
                         decoration: InputDecoration(border: OutlineInputBorder()),
+                        controller: passwordCtl,
                       ),
                     ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.fromLTRB(60,20,60,20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,6 +88,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                       TextField(
                         obscureText: true,
                         decoration: InputDecoration(border: OutlineInputBorder()),
+                        controller: againPasswordCtl,
                       ),
                     ],
                   ),
@@ -83,7 +97,16 @@ class _RegisterPagesState extends State<RegisterPages> {
                  padding: EdgeInsets.fromLTRB(100,20,100,20),
                   child: Column(
                     children: [
-                     FilledButton(onPressed: (){}, child:const Text('สมัครสมาชิก')),
+                     FilledButton(onPressed: (){
+                      if(nameCtl.text.isNotEmpty&&phoneCtl.text.isNotEmpty&&passwordCtl.text.isNotEmpty&&againPasswordCtl.text.isNotEmpty){
+                        if(passwordCtl.text==againPasswordCtl.text){
+                        showAlertDialog(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const ShowTripsPage()));
+                      }else{
+                        
+                      }
+                      }
+                     }, child:const Text('สมัครสมาชิก')),
                     ]
                   )
                 ),
@@ -105,4 +128,29 @@ class _RegisterPagesState extends State<RegisterPages> {
 
     );
   }
+  showAlertDialog(BuildContext context) {
+  // set up the button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () { },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Register"),
+    content: Text("สมัครสมาชิกสำเร็จ"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
 }
