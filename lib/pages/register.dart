@@ -100,8 +100,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                      FilledButton(onPressed: (){
                       if(nameCtl.text.isNotEmpty&&phoneCtl.text.isNotEmpty&&passwordCtl.text.isNotEmpty&&againPasswordCtl.text.isNotEmpty){
                         if(passwordCtl.text==againPasswordCtl.text){
-                        showAlertDialog(context);
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const ShowTripsPage()));
+                        showAlertDialog(context); 
                       }else{
                         
                       }
@@ -132,7 +131,9 @@ class _RegisterPagesState extends State<RegisterPages> {
   // set up the button
   Widget okButton = TextButton(
     child: Text("OK"),
-    onPressed: () { },
+    onPressed: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> const ShowTripsPage()));
+     },
   );
 
   // set up the AlertDialog
