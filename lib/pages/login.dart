@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/pages/register.dart';
+import 'package:flutter_application_1/pages/showTrips.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String text='';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +51,21 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),    
+              Text('Login: '+text),
               Padding(
                 padding: EdgeInsets.fromLTRB(70,20,70,20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(onPressed: (){}, child: Text('สมัครสมาชิก')),
-                  FilledButton(onPressed: (){}, child: Text('เข้าสู่ระบบ'))],
+                  TextButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=>RegisterPages()));
+                  }, child: Text('สมัครสมาชิก')),
+                  FilledButton(onPressed: (){
+                    setState(() {
+                      text='login sucessfuly!!!!';
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ShowTripsPage()));
+                    });
+                  }, child: Text('เข้าสู่ระบบ'))],
           
               )
               ),
