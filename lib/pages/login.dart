@@ -52,7 +52,9 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.fromLTRB(70,20,70,20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text('ลงทะเบียนใหม่'),FilledButton(onPressed: (){}, child: Text('เข้าสู่ระบบ'))],
+                children: [
+                  TextButton(onPressed: (){}, child: Text('สมัครสมาชิก')),
+                  FilledButton(onPressed: (){}, child: Text('เข้าสู่ระบบ'))],
           
               )
               ),
